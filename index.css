@@ -120,9 +120,8 @@ header a, i {
     display: flex;
     justify-content: space-between;
 }
-
-.liked-button {
-    color: red;
+.disabled-button {
+    pointer-events: none;
 }
 
 /* DEKSTOP PAGE */

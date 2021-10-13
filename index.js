@@ -107,6 +107,7 @@ likeButton.addEventListener('click', (e) => {
         like_count: firebase.firestore.FieldValue.increment(1)
     });
     likeButton.style.color = 'red';
+    likeButton.classList.add('disabled-button');
 })
 
 db.collection("belanegara_images").get().then((querySnapshot) => {
