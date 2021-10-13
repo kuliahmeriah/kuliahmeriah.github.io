@@ -73,3 +73,47 @@ themeButton.addEventListener("click", () => {
         themeButton.classList.remove("bi-moon");
     }
 });
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+apiKey: "AIzaSyD-wdntjWov9iQcWBngnymINLaYsVzgnZE",
+authDomain: "kuliahmeriah-c4c39.firebaseapp.com",
+projectId: "kuliahmeriah-c4c39",
+storageBucket: "kuliahmeriah-c4c39.appspot.com",
+messagingSenderId: "572803293318",
+appId: "1:572803293318:web:30c1de3b75964a94e7b107",
+measurementId: "G-EDF0YGTY7S"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
+
+// -------------------------------------------------------------------
+
+// liking data
+const likeCount = db.collection('belanegara_images').doc('belanegara_1');
+const likeButton = document.querySelector('.belanegara1-likes');
+likeButton.addEventListener('click', (e) => {
+    console.log("Berhasil menambahkan like");
+    likeCount.update({
+        like_count: firebase.firestore.FieldValue.increment(1)
+    });
+    likeButton.style.color = 'red';
+})
+
+db.collection("belanegara_images").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+
+        document.querySelector('.like-count').innerHTML = doc.data().like_count;
+    });
+});
