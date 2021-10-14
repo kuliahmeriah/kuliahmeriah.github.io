@@ -133,12 +133,12 @@ header a, i {
     padding: 8px 16px;
 }
 .daftarKomen {
+    margin: 4px 0;
     background-color:#f5f5f5;
     border-radius: 8px;
 }
 .tambahKomen {
     display: flex;
-    padding-bottom: 8px;
 }
 .isiKomen {
     width: 100%;
