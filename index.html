@@ -16,7 +16,7 @@
     <body>
         <header>
             <div class="logo-content">
-                <a class="logo">Kuliah Meriah</a>
+                <a class="logo" href="https://kuliahmeriah.github.io">Kuliah Meriah</a>
                 <i class="menu-button bi bi-list"></i>
             </div>
             <ul class="menu-content">
@@ -34,18 +34,38 @@
             <div class="sub-container">
                 <div class="gambar-container">
                     <img class="gambar" src="./poster_belneg.png">
-                    <div class="deskripsi">
+                    <div class="detail">
                         <div class="title">
-                            Bela Negara
+                            <span class="namaGambar">-</span>
                         </div>
-                        <div class="like-section">
+                        <div class="likeSection">
                             <i class="belanegara1-likes bi bi-hand-thumbs-up-fill"></i>
-                            <span class="like-count">0</span>
+                            <span class="likeCount">0</span>
                         </div>
+                    </div>
+                    <div class="komen">
+                        <div class="lihatKomen">
+                            <div class="tampilKomen">Lihat <span class="jumlahKomen1">0</span> Komen</div>
+                            <div class="sembunyiKomen" style="display: none;">Sembunyikan <span class="jumlahKomen2">0</span> Komen</div>
+                        </div>
+                        <ul class="daftarKomen" style="background-color:#f5f5f5; border-radius: 8px;"></ul>
+                        <form class="tambahKomen">
+                            <input
+                                class="isiKomen"
+                                type="text"
+                                name="isiKomen"
+                                placeholder="Tambahkan Komen"
+                                autocomplete="off"
+                            >
+                            <button class="kirimKomen" type="submit" name="kirim-komen">Kirim</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <h3 class="footer-tag">#MeriahkanKuliahmu</h3>
+        </footer>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
