@@ -139,6 +139,7 @@ header a, i {
 }
 .tambahKomen {
     display: flex;
+    padding-bottom: 8px;
 }
 .isiKomen {
     width: 100%;
