@@ -108,6 +108,7 @@ likeButton1.addEventListener('click', (e) => {
         like_count: firebase.firestore.FieldValue.increment(1)
     });
     likeButton1.style.color = 'red';
+    likeCount.innerHTML = parseInt(likeCount.innerHTML)+1;
     likeButton1.classList.add('disabled-button');
 })
 
