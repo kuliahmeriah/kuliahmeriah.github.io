@@ -101,6 +101,7 @@ db.settings({ timestampsInSnapshots: true });
 // liking like
 const data_gambar1 = db.collection('belanegara_images').doc('belanegara_1');
 const likeButton1 = document.querySelector('.belanegara1-likes');
+const likeCount = document.querySelector('.likeCount');
 likeButton1.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("Berhasil menambahkan like");
