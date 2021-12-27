@@ -101,6 +101,11 @@ header a, i {
     width:100%;
     margin:86px auto 0 auto;
 }
+.article-sub-container {
+	color:var(--color);
+    display:block;
+    margin:86px auto 32px auto;
+}
 .gambar-container {
     border-radius: 16px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
