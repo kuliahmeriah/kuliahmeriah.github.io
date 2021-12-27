@@ -100,17 +100,31 @@ db.settings({ timestampsInSnapshots: true });
 
 // liking like
 const data_gambar1 = db.collection('belanegara_images').doc('belanegara_1');
-const likeButton1 = document.querySelector('.belanegara1-likes');
-const likeCount = document.querySelector('.likeCount');
-likeButton1.addEventListener('click', (e) => {
+const likeImageButton = document.querySelector('.belanegara1-image-likes');
+const likeImageCount = document.querySelector('.likeImageCount');
+likeImageButton.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("Berhasil menambahkan like");
     data_gambar1.update({
         like_count: firebase.firestore.FieldValue.increment(1)
     });
-    likeButton1.style.color = 'red';
-    likeCount.innerHTML = parseInt(likeCount.innerHTML)+1;
-    likeButton1.classList.add('disabled-button');
+    likeImageButton.style.color = 'red';
+    likeImageCount.innerHTML = parseInt(likeImageCount.innerHTML)+1;
+    likeImageButton.classList.add('disabled-button');
+})
+
+const data_artikel1 = db.collection('belanegara_articles').doc('belanegara_1');
+const likeArticleButton = document.querySelector('.belanegara1-article-likes');
+const likeArticleCount = document.querySelector('.likeArticleCount');
+likeArticleButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log("Berhasil menambahkan like");
+    data_artikel1.update({
+        like_count: firebase.firestore.FieldValue.increment(1)
+    });
+    likeArticleButton.style.color = 'red';
+    likeArticleCount.innerHTML = parseInt(likeArticleCount.innerHTML)+1;
+    likeArticleButton.classList.add('disabled-button');
 })
 
 // getting likes
@@ -120,16 +134,28 @@ db.collection("belanegara_images").get().then((querySnapshot) => {
         console.log("like_count: ", doc.data().like_count);
 
         document.querySelector('.namaGambar').innerHTML = doc.data().nama_gambar;
-        document.querySelector('.likeCount').innerHTML = doc.data().like_count;
-        document.querySelector('.jumlahKomen1').innerHTML = doc.data().jumlah_komen;
-        document.querySelector('.jumlahKomen2').innerHTML = doc.data().jumlah_komen;
+        document.querySelector('.likeImageCount').innerHTML = doc.data().like_count;
+        document.querySelector('.jumlahKomenGambar1').innerHTML = doc.data().jumlah_komen;
+        document.querySelector('.jumlahKomenGambar2').innerHTML = doc.data().jumlah_komen;
+    });
+});
+
+db.collection("belanegara_articles").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log("like_count: ", doc.data().like_count);
+
+        document.querySelector('.namaArtikel').innerHTML = doc.data().nama_artikel;
+        document.querySelector('.likeArticleCount').innerHTML = doc.data().like_count;
+        document.querySelector('.jumlahKomenArtikel1').innerHTML = doc.data().jumlah_komen;
+        document.querySelector('.jumlahKomenArtikel2').innerHTML = doc.data().jumlah_komen;
     });
 });
 
 // -------------------------------------------------------------------
 
 // saving comment
-const komen_gambar1 = document.querySelector('.tambahKomen');
+const komen_gambar1 = document.querySelector('.tambahKomenGambar');
 komen_gambar1.addEventListener('submit', (e) => {
     e.preventDefault();
     data_gambar1.collection('belanegara_1_comments').add({
@@ -141,35 +167,79 @@ komen_gambar1.addEventListener('submit', (e) => {
     komen_gambar1.isiKomen.value='';
 })
 
-// getting comments
-const tampilKomenButton = document.querySelector('.tampilKomen');
-const sembunyiKomenButton = document.querySelector('.sembunyiKomen');
-const daftarKomen = document.querySelector('.daftarKomen');
-tampilKomenButton.addEventListener('click', (e) => {
+const komen_artikel1 = document.querySelector('.tambahKomenArtikel');
+komen_artikel1.addEventListener('submit', (e) => {
     e.preventDefault();
-    sembunyiKomenButton.style.display = "block";
-    tampilKomenButton.style.display = "none";
+    data_artikel1.collection('belanegara_1_comments').add({
+        isi_komen: komen_artikel1.isiKomen.value
+    });
+    data_artikel1.update({
+        jumlah_komen: firebase.firestore.FieldValue.increment(1)
+    });
+    komen_artikel1.isiKomen.value='';
+})
+
+// getting comments
+const tampilKomenGambarButton = document.querySelector('.tampilKomenGambar');
+const sembunyiKomenGambarButton = document.querySelector('.sembunyiKomenGambar');
+const daftarKomenGambar = document.querySelector('.daftarKomenGambar');
+tampilKomenGambarButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    sembunyiKomenGambarButton.style.display = "block";
+    tampilKomenGambarButton.style.display = "none";
     data_gambar1.collection('belanegara_1_comments').orderBy('isi_komen').get().then((querySnapshot) => {
         querySnapshot.docs.forEach(doc => {
             console.log("isi_komen: ", doc.data().isi_komen);
-            tampilKomen(doc.data().isi_komen);
+            tampilKomenGambar(doc.data().isi_komen);
         })
     })
 })
-sembunyiKomenButton.addEventListener('click', (e) => {
+sembunyiKomenGambarButton.addEventListener('click', (e) => {
     e.preventDefault();
-    sembunyiKomenButton.style.display = "none";
-    tampilKomenButton.style.display = "block";
-    sembunyiKomen();
+    sembunyiKomenGambarButton.style.display = "none";
+    tampilKomenGambarButton.style.display = "block";
+    sembunyiKomenGambar();
 })
-tampilKomen = ((isi_komen) => {
+tampilKomenGambar = ((isi_komen) => {
     let li = document.createElement('li');
     li.classList.add('itemKomen');
     let isiKomen = document.createElement('span');
     isiKomen.textContent = isi_komen;
     li.appendChild(isiKomen);
-    daftarKomen.appendChild(li);
+    daftarKomenGambar.appendChild(li);
 });
-sembunyiKomen = (() => {
-    daftarKomen.innerHTML = '';
+sembunyiKomenGambar = (() => {
+    daftarKomenGambar.innerHTML = '';
+});
+
+const tampilKomenArtikelButton = document.querySelector('.tampilKomenArtikel');
+const sembunyiKomenArtikelButton = document.querySelector('.sembunyiKomenArtikel');
+const daftarKomenArtikel = document.querySelector('.daftarKomenArtikel');
+tampilKomenArtikelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    sembunyiKomenArtikelButton.style.display = "block";
+    tampilKomenArtikelButton.style.display = "none";
+    data_artikel1.collection('belanegara_1_comments').orderBy('isi_komen').get().then((querySnapshot) => {
+        querySnapshot.docs.forEach(doc => {
+            console.log("isi_komen: ", doc.data().isi_komen);
+            tampilKomenArtikel(doc.data().isi_komen);
+        })
+    })
+})
+sembunyiKomenArtikelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    sembunyiKomenArtikelButton.style.display = "none";
+    tampilKomenArtikelButton.style.display = "block";
+    sembunyiKomenArtikel();
+})
+tampilKomenArtikel = ((isi_komen) => {
+    let li = document.createElement('li');
+    li.classList.add('itemKomen');
+    let isiKomen = document.createElement('span');
+    isiKomen.textContent = isi_komen;
+    li.appendChild(isiKomen);
+    daftarKomenArtikel.appendChild(li);
+});
+sembunyiKomenArtikel = (() => {
+    daftarKomenArtikel.innerHTML = '';
 });

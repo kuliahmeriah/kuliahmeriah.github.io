@@ -39,17 +39,17 @@
                             <span class="namaGambar">-</span>
                         </div>
                         <div class="likeSection">
-                            <i class="belanegara1-likes bi bi-hand-thumbs-up-fill"></i>
-                            <span class="likeCount">0</span>
+                            <i class="belanegara1-image-likes bi bi-hand-thumbs-up-fill"></i>
+                            <span class="likeImageCount">0</span>
                         </div>
                     </div>
                     <div class="komen">
                         <div class="lihatKomen">
-                            <div class="tampilKomen">Lihat <span class="jumlahKomen1">0</span> Komen</div>
-                            <div class="sembunyiKomen" style="display: none;">Sembunyikan <span class="jumlahKomen2">0</span> Komen</div>
+                            <div class="tampilKomenGambar">Lihat <span class="jumlahKomenGambar1">0</span> Komen</div>
+                            <div class="sembunyiKomenGambar" style="display: none;">Sembunyikan <span class="jumlahKomenGambar2">0</span> Komen</div>
                         </div>
-                        <ul class="daftarKomen"></ul>
-                        <form class="tambahKomen">
+                        <ul class="daftarKomen daftarKomenGambar"></ul>
+                        <form class="tambahKomen tambahKomenGambar">
                             <input
                                 required
                                 class="isiKomen"
@@ -58,7 +58,37 @@
                                 placeholder="Tambahkan Komen"
                                 autocomplete="off"
                             >
-                            <button class="kirimKomen" type="submit" name="kirim-komen">Kirim</button>
+                            <button class="kirimKomen kirimKomenGambar" type="submit" name="kirim-komen-gambar">Kirim</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="gambar-container">
+                    <img class="gambar" src="./artikel_belneg.png">
+                    <div class="detail">
+                        <div class="title">
+                            <span class="namaArtikel">-</span>
+                        </div>
+                        <div class="likeSection">
+                            <i class="belanegara1-article-likes bi bi-hand-thumbs-up-fill"></i>
+                            <span class="likeArticleCount">0</span>
+                        </div>
+                    </div>
+                    <div class="komen">
+                        <div class="lihatKomen">
+                            <div class="tampilKomenArtikel">Lihat <span class="jumlahKomenArtikel1">0</span> Komen</div>
+                            <div class="sembunyiKomenArtikel" style="display: none;">Sembunyikan <span class="jumlahKomenArtikel2">0</span> Komen</div>
+                        </div>
+                        <ul class="daftarKomen daftarKomenArtikel"></ul>
+                        <form class="tambahKomen tambahKomenArtikel">
+                            <input
+                                required
+                                class="isiKomen"
+                                type="text"
+                                name="isiKomen"
+                                placeholder="Tambahkan Komen"
+                                autocomplete="off"
+                            >
+                            <button class="kirimKomen kirimKomenArtikel" type="submit" name="kirim-komen-artikel">Kirim</button>
                         </form>
                     </div>
                 </div>

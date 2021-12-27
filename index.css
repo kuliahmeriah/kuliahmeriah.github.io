@@ -96,10 +96,9 @@ header a, i {
 .sub-container {
 	color:var(--color);
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap:4em;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
     width:100%;
-    max-width:450px;
     margin:86px auto 0 auto;
 }
 .gambar-container {
